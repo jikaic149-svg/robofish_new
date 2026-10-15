@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "role": "HEAD_MARKER",
+  "hue_center": 105.00205621512539,
+  "hue_tolerance": 12.699175834655762,
+  "sat_min": 70,
+  "sat_max": 255,
+  "val_min": 98,
+  "val_max": 255,
+  "expected_area": 24.0
+}

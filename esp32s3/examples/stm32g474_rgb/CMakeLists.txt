@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.20)
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_C_COMPILER "D:/GCC/ARMGCC/10 2021.10/bin/arm-none-eabi-gcc.exe")
+set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+project(stm32g474_rgb C)
+add_executable(rgb_cycle.elf main.c)
+target_compile_options(rgb_cycle.elf PRIVATE -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -Os -g3 -ffreestanding -fno-builtin -Wall -Wextra -Werror)
+target_link_options(rgb_cycle.elf PRIVATE -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -nostdlib "-T${CMAKE_CURRENT_SOURCE_DIR}/flash.ld")
+add_custom_command(TARGET rgb_cycle.elf POST_BUILD
+  COMMAND "D:/GCC/ARMGCC/10 2021.10/bin/arm-none-eabi-objcopy.exe" -O binary "$<TARGET_FILE:rgb_cycle.elf>" "${CMAKE_CURRENT_BINARY_DIR}/rgb_cycle.bin")

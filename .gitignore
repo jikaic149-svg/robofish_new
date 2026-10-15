@@ -1,0 +1,54 @@
+# Reproducible build and release output; source and formal reports stay visible.
+**/build/
+/firmware/
+**/CMakeUserPresets.json
+esp32s3/AmphiLink_flash/rlyoulink-release/
+esp32s3/AmphiLink_UI/motion_model.dll
+
+# Local agent/editor state. Keep the STM32 launch.json.in source template.
+.agents/
+.codex/
+.aws/
+.claude/
+.cursor/
+/.vscode/
+**/.vscode/settings.json
+**/.vscode/launch.json
+*.code-workspace
+/.archify/
+.agent_tmp/
+/VISION/Ultralytics/settings.json
+/_tmp_slide.png
+
+# Credentials and provisioning inputs; public verification keys are source.
+**/.release-keys/
+.secrets/
+.ssh/
+.env
+.env.*
+!.env.example
+!.env.sample
+*-private.pem
+*_private.pem
+*.private.pem
+private*.pem
+id_rsa
+id_ed25519
+**/wireless_secrets.h
+**/wifi_nvs.csv
+**/identity_nvs.csv
+
+# Recreated language caches and local environments.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+node_modules/
+
+# Runtime logs, browser profiles and generated desktop resources.
+*.log
+esp32s3/AmphiLink_UI/rlyoulink.ico
+esp32s3/AmphiLink_UI/_edge_profile/

@@ -1,0 +1,16 @@
+:root{color-scheme:light;--vscode-editor-background:#fff;--vscode-sideBar-background:#fff;--vscode-editor-foreground:#203840;--vscode-foreground:#203840;--vscode-descriptionForeground:#637c84;--vscode-panel-border:#dce6eb;--vscode-input-background:#f4f7fa;--vscode-input-foreground:#203840;--vscode-input-border:#d7e2e8;--vscode-button-background:#007d76;--vscode-button-foreground:#fff;--vscode-button-hoverBackground:#00675f;--vscode-button-secondaryBackground:#eef4f6;--vscode-button-secondaryForeground:#25404a;--vscode-focusBorder:#258c83;--vscode-list-activeSelectionBackground:#dfefec;--vscode-list-hoverBackground:#f0f5f6;--vscode-errorForeground:#bd3e46;--vscode-textLink-foreground:#007d76;--vscode-font-family:Inter,'Segoe UI','Microsoft YaHei',sans-serif;--vscode-font-size:14px;--vscode-editor-font-family:Consolas,monospace}
+:root[data-theme=dark]{color-scheme:dark;--vscode-editor-background:#1a2a32;--vscode-sideBar-background:#1a2a32;--vscode-editor-foreground:#dce8eb;--vscode-foreground:#dce8eb;--vscode-descriptionForeground:#9eb4bd;--vscode-panel-border:#354b56;--vscode-input-background:#14232b;--vscode-input-foreground:#dce8eb;--vscode-input-border:#3b515e;--vscode-button-background:#2c7e75;--vscode-button-secondaryBackground:#213741;--vscode-button-secondaryForeground:#dce8eb;--vscode-list-activeSelectionBackground:#244a48;--vscode-list-hoverBackground:#203741;--vscode-errorForeground:#ee969b;--vscode-textLink-foreground:#80cdbc}
+html,body.workstation-native{margin:0;padding:0;background:var(--vscode-editor-background);color:var(--vscode-foreground);font:14px/1.6 var(--vscode-font-family);overflow-x:hidden}
+.workstation-sidebar>header,.workstation-sidebar>.brand,.workstation-sidebar>.footer,.workstation-sidebar #githubLink,.workstation-sidebar #cpuLoadSection{display:none!important}
+.workstation-sidebar>details,.workstation-sidebar>section{margin:0 0 14px;border:0!important;box-shadow:none!important;background:transparent}
+.workstation-sidebar summary{font-size:15px;font-weight:600;padding:10px 0}
+.workstation-sidebar [hidden]{display:none!important}
+.workstation-sidebar .mini,.workstation-sidebar input,.workstation-sidebar select{font-size:13px;min-height:32px}
+.workstation-sidebar .available{max-height:430px}.workstation-sidebar .var-row,.workstation-sidebar .available-row{min-height:34px}
+.workstation-sidebar .peripheral-tree{max-height:680px}.workstation-sidebar .rtos-table td{padding:10px 8px}
+.workstation-sidebar .chip-more{margin-top:12px}
+.workstation-chart .top{position:relative}.workstation-chart .toolbar{gap:9px;padding:10px 12px}
+.workstation-chart .toolbar .group{gap:7px}.workstation-chart button,.workstation-chart input,.workstation-chart select{min-height:32px;font-size:13px}
+.workstation-chart .layout{height:620px}.workstation-chart .side{min-width:180px}
+:root[data-transport=reconnecting] body:before{content:'调试引擎连接中断，正在重新连接；显示的是上次数据。';display:block;background:#fff1d4;color:#805a17;padding:8px 12px;font-size:13px}
+@media(max-width:600px){.workstation-chart .layout{height:520px}.workstation-chart .toolbar{flex-wrap:wrap}.workstation-chart .toolbar .group{flex-wrap:wrap}.workstation-sidebar .peripheral-controls{flex-wrap:wrap}.workstation-sidebar .rtos-table-wrap{overflow:auto}}

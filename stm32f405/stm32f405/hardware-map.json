@@ -1,0 +1,95 @@
+{
+  "readback_at_utc": "2026-10-13T14:30:58.0202318Z",
+  "project_uuid": "6ffdb3710cbc4096bcbd16725547a612",
+  "stm32_pcb_uuid": "82fb22f07146028c",
+  "distribution_pcb_uuid": "6b298212816fdf27",
+  "mcu": "STM32F405RGT6",
+  "harness": "Eight signal pins, U13.N -> U7.N. Pins 9/10 are grounded mounting pads.",
+  "role_assignment": "User: FRONT2 left fin, FRONT1 right fin, rear upper tail 1, rear lower tail 2.",
+  "scope": "Live schematic pin nets and PCB pad nets; physical harness, copper continuity and powered waveforms not measured.",
+  "pump_enabled": false,
+  "mappings": [
+    {
+      "role": "pectoral_left",
+      "position": "FRONT2",
+      "firmware_resource": "kPectoralLeftServo",
+      "distribution_connector": "CN5",
+      "signal_pin": 3,
+      "distribution_net": "SERVO4_PWM",
+      "harness_pin": 2,
+      "mcu_connector": "U13",
+      "mcu_pin": "PA8",
+      "mcu_package_pin": 41,
+      "mcu_net": "SERVO4_PWM/PA08",
+      "timer": "TIM1",
+      "channel": 1
+    },
+    {
+      "role": "pectoral_right",
+      "position": "FRONT1",
+      "firmware_resource": "kPectoralRightServo",
+      "distribution_connector": "CN8",
+      "signal_pin": 3,
+      "distribution_net": "SERVO1_PWM",
+      "harness_pin": 7,
+      "mcu_connector": "U13",
+      "mcu_pin": "PA0",
+      "mcu_package_pin": 14,
+      "mcu_net": "SERVO1_PWM/PA00",
+      "timer": "TIM5",
+      "channel": 1
+    },
+    {
+      "role": "tail_1",
+      "position": "rear_upper",
+      "firmware_resource": "kTailServo1",
+      "distribution_connector": "CN7",
+      "signal_pin": 3,
+      "distribution_net": "SERVO2_PWM",
+      "harness_pin": 6,
+      "mcu_connector": "U13",
+      "mcu_pin": "PA1",
+      "mcu_package_pin": 15,
+      "mcu_net": "SERVO2_PWM/PA01",
+      "timer": "TIM5",
+      "channel": 2
+    },
+    {
+      "role": "tail_2",
+      "position": "rear_lower",
+      "firmware_resource": "kTailServo2",
+      "distribution_connector": "CN6",
+      "signal_pin": 3,
+      "distribution_net": "SERVO3_PWM",
+      "harness_pin": 5,
+      "mcu_connector": "U13",
+      "mcu_pin": "PA15",
+      "mcu_package_pin": 50,
+      "mcu_net": "SERVO3_PWM/PA15",
+      "timer": "TIM2",
+      "channel": 1
+    }
+  ],
+  "evidence": [
+    {
+      "path": "build/eda/schematic-p1.json",
+      "sha256": "2dfc6a58eff9da0caf4e8084cb4be24a37ecf69c60fece91a95a06711f0a634c"
+    },
+    {
+      "path": "build/eda/schematic-p2.json",
+      "sha256": "528f91aee47e7037825f860cbb734f050b46ed5048a7c6c5114dad73000fc4c5"
+    },
+    {
+      "path": "build/eda/pcb1.json",
+      "sha256": "e9bb8fe1b0d82e7a40ea12cf3edd54e9a50486118a2a2372ee5ae76cabbcea24"
+    },
+    {
+      "path": "build/eda/distribution-semantic-updated.json",
+      "sha256": "ffcb72c0879ea98d62721baa981c268b2bfb80693b43f4f1e3560fb251cfe1bd"
+    },
+    {
+      "path": "build/eda/distribution-pcb3-updated.json",
+      "sha256": "b8dd4bd2f861667fc9812b1bd1eaf2c593b4a458a0fffa980ba4e9cfab9b56ad"
+    }
+  ]
+}

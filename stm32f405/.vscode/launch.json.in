@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "F405: OpenOCD flash and debug",
+      "type": "cortex-debug",
+      "request": "launch",
+      "servertype": "openocd",
+      "device": "STM32F405RG",
+      "cwd": "${workspaceFolder}/@F405_WORKSPACE_PREFIX@",
+      "executable": "${workspaceFolder}/@F405_WORKSPACE_PREFIX@build/debug/RoboFishF405.elf",
+      "loadFiles": ["${workspaceFolder}/@F405_WORKSPACE_PREFIX@build/debug/RoboFishFactory.elf"],
+      "serverpath": "@OPENOCD_EXECUTABLE@",
+      "gdbPath": "@ARM_GDB_EXECUTABLE@",
+      "armToolchainPath": "@arm_toolchain_dir@",
+      "configFiles": ["${workspaceFolder}/@F405_WORKSPACE_PREFIX@stm32f405/openocd.cfg"],
+      "preLaunchTask": "@F405_BUILD_TASK@",
+      "postLaunchCommands": ["monitor reset init", "break Error_Handler", "break vApplicationStackOverflowHook"],
+      "runToEntryPoint": "main"
+    }
+  ]
+}

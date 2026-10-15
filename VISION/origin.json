@@ -1,0 +1,8 @@
+{
+  "source": "C:\\Users\\rlyoulo\\Desktop\\codeFish(1)\\codeFish\\VISION",
+  "entry_sha256": "f0e1def03d96901cb1fdf9f16a13c598f21dfd55cab2c2ff008d8c404d297112",
+  "model_source": "C:\\Users\\rlyoulo\\Desktop\\codeFish(1)\\codeFish\\VISION\\training\\fish_pose_v1\\runs\\yolo11n-pose-960-strict-sigma-v2\\train\\weights\\best.pt",
+  "model_sha256": "402bb22687129284595a177deba72d1e4ea73132dfb474c71c5f9d99900348a9",
+  "changes": "Browser frames/actions and file capture; local runtime replaces old device HTTP/UDP and tablet sockets. Original algorithms retained.",
+  "adapted_entry_sha256": "590309f9cc2c592a1ea38584b1fdc9394e622093ff19233829c1c458f6a8caba"
+}

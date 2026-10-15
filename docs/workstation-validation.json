@@ -1,0 +1,187 @@
+{
+  "revision": "workstation-4",
+  "date": "2026-10-16",
+  "pc_tests": 79,
+  "bridge_version": "0.2.1",
+  "native_elf_symbols": 123,
+  "browser": {
+    "passed": true,
+    "page_errors": [],
+    "real_native_widgets": [
+      "variables",
+      "chart",
+      "peripherals",
+      "rtos",
+      "chip",
+      "memory-analysis",
+      "configuration"
+    ],
+    "native_messages": [
+      "initCheck",
+      "memoryRefresh",
+      "ready",
+      "samplingArchiveInfo"
+    ],
+    "mocked_target_checks": [
+      "thread and frame selection",
+      "variable pagination",
+      "source breakpoints",
+      "thread-bound stepping",
+      "memory read",
+      "cancelled RAM write"
+    ],
+    "responsive_width": 390,
+    "hardware_tested": false
+  },
+  "ui_feedback": {
+    "passed": true,
+    "page_errors": [],
+    "checks": [
+      "always visible connection/target",
+      "recording explanation and real exported sample",
+      "board-only view without inference",
+      "control-only view",
+      "dual view",
+      "44px actions",
+      "model and calibration tasks",
+      "layout persistence",
+      "capture-folder task",
+      "390px layouts"
+    ],
+    "camera_and_vision_responses": "intercepted fixtures",
+    "hardware_tested": false
+  },
+  "recorded_vision": {
+    "passed": true,
+    "source": "auv_record_20260901_164812.mp4",
+    "selected_model": "VISION/models/fish.pt",
+    "model_ready": true,
+    "raw_size": [
+      640,
+      480
+    ],
+    "result_size": [
+      640,
+      480
+    ],
+    "display_task_processed": true,
+    "hardware_tested": false
+  },
+  "native_toolbar": {
+    "button_height_px": 49,
+    "tested_sizes": [
+      [
+        640,
+        480
+      ],
+      [
+        1280,
+        720
+      ]
+    ],
+    "hit_tests_passed": true
+  },
+  "hardware_tested": false,
+  "firmware_changed": false,
+  "previous_validation": {
+    "revision": "workstation-3",
+    "date": "2026-10-15",
+    "pc_tests": 74,
+    "native_elf_symbols": 123,
+    "bridge_checks": [
+      "attach without download",
+      "native script names",
+      "frame and variable pagination",
+      "exact flash plan and denial",
+      "message roundtrip",
+      "event recovery",
+      "asset registration before creation",
+      "CSV download and cleanup",
+      "host setting persistence"
+    ],
+    "browser": {
+      "passed": true,
+      "page_errors": [],
+      "real_native_widgets": [
+        "variables",
+        "chart",
+        "peripherals",
+        "rtos",
+        "chip",
+        "memory-analysis",
+        "configuration"
+      ],
+      "native_messages": [
+        "initCheck",
+        "memoryRefresh",
+        "ready",
+        "samplingArchiveInfo"
+      ],
+      "mocked_target_checks": [
+        "thread and frame selection",
+        "variable pagination",
+        "source breakpoints",
+        "thread-bound stepping",
+        "memory read",
+        "cancelled RAM write"
+      ],
+      "responsive_width": 390,
+      "hardware_tested": false
+    },
+    "compatibility": {
+      "version": "0.8.3",
+      "original_sha256": "215b6113b4f931b5dc87aef71ee99f3db878e18bf1741c5ddb09d246cfe6063d",
+      "adapted_sha256": "6c1a6fcca17d1e26c1dc82c6c04d4681a38f88844d267054900915fe5707bdc0",
+      "hooks": [
+        "optional virtual chart panel",
+        "reuse original sidebar message handler",
+        "export active provider"
+      ],
+      "engine_behavior_modified": false
+    },
+    "hardware_tested": false,
+    "firmware_changed": false,
+    "feature_matrix": "docs/EMBERPROBE_PARITY.md",
+    "previous_validation": {
+      "revision": "workstation-2",
+      "date": "2026-10-15",
+      "pc_tests": 70,
+      "original_vision_tests": 84,
+      "native_bridge_contracts": "attach without download; pause/inspection; exact factory plan; deny propagated without retry or fallback",
+      "browser": {
+        "passed": true,
+        "page_errors": [],
+        "native_task_mapping": [
+          "threads",
+          "stack",
+          "scopes"
+        ],
+        "checks": [
+          "independent mode without direction",
+          "three simultaneous axes",
+          "single-axis release",
+          "space stop",
+          "blur stop",
+          "native thread/frame remap",
+          "closed advanced panels",
+          "recording",
+          "4 pages at 390px"
+        ]
+      },
+      "recorded_vision": {
+        "passed": true,
+        "model_ready": true,
+        "jpeg_raw_and_result": true,
+        "multipart_stream": true,
+        "native_task_processed": true
+      },
+      "hardware_tested": false,
+      "firmware_changed": false,
+      "limitations": [
+        "PC LoRa sender and telemetry uplink not integrated.",
+        "Full source and waveform panels require the installed VS Code EmberProbe host.",
+        "No physical programming or debugging acceptance performed."
+      ]
+    }
+  }
+}

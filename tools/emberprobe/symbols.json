@@ -1,0 +1,5 @@
+{
+  "buildWorkspace": "C:\\Users\\rlyoulo\\Desktop\\robofish_new",
+  "symbols": "stm32f405/build/debug/RoboFishF405.elf",
+  "flash": "stm32f405/build/debug/RoboFishFactory.elf"
+}

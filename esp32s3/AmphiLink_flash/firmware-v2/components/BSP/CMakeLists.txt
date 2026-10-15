@@ -1,0 +1,19 @@
+idf_component_register(
+    SRCS
+        "src/bsp_adc.c"
+        "src/bsp_gpio.c"
+        "src/bsp_flash.c"
+        "src/bsp_system.c"
+        "src/bsp_usb.c"
+    INCLUDE_DIRS
+        "inc"
+    REQUIRES
+        esp_adc
+        esp_driver_gpio
+        esp_hw_support
+        esp_partition
+        esp_rom
+        esp_timer
+        esp_system
+        usb
+)

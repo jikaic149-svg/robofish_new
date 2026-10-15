@@ -1,0 +1,11 @@
+{
+  "version": "0.8.3",
+  "original_sha256": "215b6113b4f931b5dc87aef71ee99f3db878e18bf1741c5ddb09d246cfe6063d",
+  "adapted_sha256": "6c1a6fcca17d1e26c1dc82c6c04d4681a38f88844d267054900915fe5707bdc0",
+  "hooks": [
+    "optional virtual chart panel",
+    "reuse original sidebar message handler",
+    "export active provider"
+  ],
+  "engine_behavior_modified": false
+}

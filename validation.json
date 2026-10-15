@@ -1,0 +1,609 @@
+{
+  "recorded_at_utc": "2026-10-15T20:24:04.726844+00:00",
+  "scope": "L0-L3 tree control, feedback boundary, PC allocation preview and whole-workspace tidy; hardware not operated",
+  "build": {
+    "esp32s3": {
+      "result": "passed",
+      "esp_idf": "5.3.2",
+      "application_bytes": 1168928,
+      "ota_slot_bytes": 2097152,
+      "build_log": "build/esp32s3/build.log",
+      "rebuilt_this_change": false,
+      "project_version": "3.1.5-robofish",
+      "flash_bytes": 1113488,
+      "signature_verified": true,
+      "last_build_scope": "Prior PC workstation/API-only S3 change; unchanged in motion-control iteration"
+    },
+    "stm32f405_debug": {
+      "result": "passed",
+      "flash_bytes": 96412,
+      "ram_reserved_bytes": 20520,
+      "ctest_log": "build/control-implementation/debug-ctest.log",
+      "app_b_flash_bytes": 96412,
+      "normal_ram_bytes": 20456,
+      "retained_fault_bytes": 64,
+      "bootloader_bytes": 2208,
+      "factory_bytes": 620700,
+      "ctest_tests": 3,
+      "build_log": "build/control-implementation/debug-build.log"
+    },
+    "stm32f405_release": {
+      "result": "passed",
+      "flash_bytes": 56204,
+      "ram_reserved_bytes": 20520,
+      "ctest_log": "build/control-implementation/release-ctest.log",
+      "app_b_flash_bytes": 56204,
+      "normal_ram_bytes": 20456,
+      "retained_fault_bytes": 64,
+      "bootloader_bytes": 2208,
+      "factory_bytes": 580492,
+      "ctest_tests": 3,
+      "build_log": "build/control-implementation/release-build.log"
+    }
+  },
+  "checks": {
+    "stm32_elf_hard_float_startup_irq_static_allocation": "passed in Debug and Release",
+    "bsp_host_regression": {
+      "result": "passed",
+      "checks": 41
+    },
+    "shared_c_protocol": "passed: CRC vector/corruption, wrap/ACK/bounds, retired command type 4 rejected, battery fields and permission flags",
+    "web_javascript_syntax": "passed: node --check",
+    "s3_elf_symbols": "esp_camera_init, robot_camera_register, robot_link_start present; WS2812 symbols absent",
+    "s3_console_pin_ownership": "primary/secondary console disabled; GPIO43/44 for SPI and USB PHY for TinyUSB",
+    "battery_voltage_conversion": "passed: divider, factory VREF compensation under changed VDDA, zero input and invalid calibration/conversion data",
+    "battery_web": "passed: normal/low/high/unavailable/offline readings, charge/stopped text and backup control gates",
+    "stm32_adc_vectors": "passed: ADC_IRQHandler and DMA2_Stream0_IRQHandler are strong, correctly indexed vectors in Debug/Release",
+    "demo_removed": "source/API/command type 4 removed; no Demo/demonstration symbols in STM32 Release ELF",
+    "voltage_feedforward": "passed: dynamic signed inputs, range/zero/invalid neutral, raw-vs-filtered boundary, 6.6/8.4 V inclusive, freshness and wrap",
+    "native_regression_runner": "passed: 15 native groups, 15 control-file architecture boundaries and Node checks; build/control-implementation/host-tests.log",
+    "battery_stop": "passed: actual MotionController, raw voltage vs healthy display, six neutral outputs, invalid/stale samples, LoRa/manual/automation/vision/PID rejection, no automatic recovery, neutral-write failure barrier; mock driver/HAL/RTOS",
+    "lora_source_sequence": "passed: 100 forward / 101 stop / 99 forward rejected; per-source keys, repeated payload ACK without reapply, conflicting payload rejection, history beyond recent cache, wrap and half-range, capacity exhaustion",
+    "uart_error_recovery": "passed: RX-only abort/rearm, TX DMA retained, busy rearm retried from RadioPoll, discontinuity on overflow/error and newline resynchronization",
+    "spi_dma_sequencing": "passed: real SpiLink.cpp with mock HAL/RTOS; RX/TX/CS event permutations, TX immutable during DMA, short/overlong frames, delayed stream disable, partial start unwind and queue overflow; actual timing not measured",
+    "strong_uart_error_callback": "passed: strong HAL_UART_ErrorCallback in Release ELF",
+    "signed_ota_package": "3.1.4 signature, hash, image version and hardware/layout verified; existing keys preserved",
+    "cleanup_regression": "passed: seven native regression groups and Node display checks; STM32 Debug/Release and CTest; unsupported pump commands rejected without changing target",
+    "debug_configuration": "validated against installed Cortex-Debug schema; factory loadFiles and supported postLaunchCommands; no hardware session run",
+    "dataflow_preservation": "Original 3.1.2 standalone HTML copied byte-for-byte; scratch/source snapshots removed; README labels it as a historical snapshot",
+    "esp32_preserved": "source fingerprints and every shipped S3 artifact/signature unchanged; S3 not rebuilt",
+    "safety_control": "passed: startup/LoRa lease and wrap, fixed-fin zero-thrust Surface, stop/battery/new-command barriers, transient/persistent errors, neutral-window feeding, task stall, stale vision/automation generations, recovery cleanup lock failure",
+    "boot_store": "passed: production C storage/selection; all 31 program cut points, page-reclaim cuts, valid-header corrupt-tail rejection, persisted trial/rollback, invalid candidate confirmation bit, sequence wrap; actual Debug/Release factory decoding",
+    "arm_ab_boot": "passed: both configurations, 3 tests each, fixed bases/448KiB limits/fault RAM/first watchdog call/strong HardFault and DMA vectors",
+    "pc_unit_tests": "passed: 84 tests against the current isolated motion DLL, including source freshness and no hot reload",
+    "pc_browser": "passed: Edge navigation/control/degradation/capture/freeze/CSV/PNG/dual-vision/network-simulation/tool-path/dark/mobile; no JS errors",
+    "openocd": "passed: specified 0.12.0+dev-snapshot TCP syntax and registered target scripts; no hardware init",
+    "s3_web_hosting": "removed static HTTP registrations and embedded web compile step; API/camera retained; compatible partition layout unchanged"
+  },
+  "configuration": {
+    "nrst_gpio": 6,
+    "spi_clock_hz": 8000000,
+    "spi_target_period_us": 1000,
+    "spi_frame_bytes": 128,
+    "spi_offline_ms": 100,
+    "spi_offline_action": "Blocks startup; does not interrupt running healthy LoRa. LoRa goal expiry enters fixed-fin zero-thrust Surface.",
+    "stm32_network_failsafe_macro": "RF_HAS_NETWORK_LINK=0",
+    "stm32_hse_hz": 8000000,
+    "battery_adc": {
+      "pin": "PC2/ADC1_IN12",
+      "reference": "VREFINT with factory VREFINT_CAL",
+      "divider_upper_ohms": 10000,
+      "divider_lower_ohms": 2200,
+      "adc_clock_hz": 21000000,
+      "sampling_cycles": 480,
+      "dma": "DMA2_Stream0 Channel0 normal, two halfwords",
+      "irq_priority": 5,
+      "sample_period_ms": 100,
+      "conversion_timeout_ms": 10,
+      "telemetry_freshness_ms": 500,
+      "filter": "1/4 low-pass; first sample unfiltered"
+    },
+    "wifi_motion_backup_enabled": false,
+    "wifi_motion_backup_pending": "Phase 2: session/lease and RFS1 permission/command arbitration not implemented",
+    "propulsion_voltage_feedforward_enabled": true,
+    "propulsion_voltage_feedforward": {
+      "battery": "2S",
+      "reference_mv": 7400,
+      "input": "each current signed left/right command after mode/gear/differential/transition computation",
+      "formula": "command_percent * 7400 / latest_valid_battery_mv",
+      "rounding": "nearest integer magnitude; original sign retained",
+      "limits_percent": [
+        -100,
+        100
+      ],
+      "update_period_ms": 20,
+      "voltage_sample_period_ms": 100,
+      "voltage_maximum_age_ms": 500,
+      "invalid_zero_or_stale_voltage": "neutral ESCs and motion interlock; new healthy command required after recovery",
+      "zero_command": "neutral stays neutral",
+      "state": "nominal command preserved; compensated output never feeds back into transition state",
+      "telemetry": "accepted compensated ESC percentages returned for written channels, not speed/thrust feedback"
+    },
+    "spi_minimum_cs_high_us": 100,
+    "spi_rearm": "NSS high and both RX/TX DMA handlers retired; bounded stream-disable/reset recovery",
+    "battery_motion_protection": {
+      "battery_assumption": "standard lithium 2S, 7.4 V nominal; specific cell model not supplied",
+      "minimum_mv_inclusive": 6600,
+      "maximum_mv_inclusive": 8400,
+      "check": "raw conversion before display low-pass; failed/stale sample also stops",
+      "stop": "four servos centered, both ESCs neutral; discard retained targets",
+      "recovery": "healthy sample AND a newly accepted control command; no old-target restart",
+      "upper_voltage_reference": "https://www.genstattu.com/blog/how-to-protect-your-batteries-as-long-as-possible-when-you-use-it",
+      "lower_cutoff_reference": "https://support.hobbywingdirect.com/hc/en-us/articles/23823729425043-Low-Voltage-Cutoff-LVC-tuning",
+      "limitation": "pack voltage only; individual cell imbalance and ADC calibration not measured"
+    },
+    "lora_ordering": {
+      "source_bits": 16,
+      "sequence_bits": 16,
+      "maximum_sources": 4,
+      "comparison": "per-source 16-bit half-range",
+      "source_eviction": false,
+      "timestamp_added": false,
+      "transmitter_modified": false,
+      "restart_contract": "sender sequence must continue across reboot; explicit reconnect contract pending"
+    },
+    "lora_uart_receive": "115200-8N1; byte interrupt plus 512-byte software ring; receive-only error recovery and lost-line discard",
+    "lora_ack_tx_enabled": false,
+    "lora_transmitter_retry_implemented": false,
+    "camera_auth_changes": "deferred by user; existing endpoints retained",
+    "firmware_hardware_profile": "four servos and two ESCs; superseded source alternatives removed",
+    "framework_reference": "TI-Template responsibility split; native HAL/FreeRTOS/ESP-IDF retained",
+    "entry_points": {
+      "startup": "stm32f405/stm32f405/Core/Src/main.cpp",
+      "hardware": "stm32f405/stm32f405/bsp/BoardInit.cpp",
+      "tasks": "stm32f405/src/task/RobotTasks.cpp",
+      "control": "stm32f405/src/task/MotionController.cpp",
+      "vision": "stm32f405/src/task/MotionVision.cpp"
+    },
+    "removed_stm32_support": [
+      "unfitted pump GPIO/device/state/API",
+      "AP/STA link monitor",
+      "STM32 OTA command lease",
+      "ESP log/time/pinned-task adapters",
+      "five unused HAL compilation units"
+    ],
+    "preserved_stm32_support": [
+      "vision/PID/automation",
+      "manual failsafe",
+      "battery interlock/feed-forward",
+      "LoRa sequencing/error recovery",
+      "SPI DMA recovery",
+      "six PWM outputs",
+      "status strip",
+      "SWD"
+    ],
+    "rtos_api": "native xTaskCreateStatic; stack depth in StackType_t words; original stack bytes/priorities/periods retained",
+    "clock_api": "BSP nowMs() returns HAL_GetTick(); same uint32 millisecond wrap semantics",
+    "lora_target_lease_ms": 3000,
+    "watchdog": {
+      "early_hook": "First call in Reset_Handler before SystemInit/BSS/constructors",
+      "startup_prescaler": 4,
+      "startup_reload": 4095,
+      "startup_nominal_ms": 8192,
+      "runtime_prescaler": 4,
+      "runtime_reload": 255,
+      "runtime_nominal_ms": 512,
+      "nominal_lsi_hz": 32000,
+      "hardware_timing_verified": false,
+      "radio_control_vision_deadlines_ms": [
+        100,
+        100,
+        100
+      ],
+      "vision_monitored_only_when_active": true,
+      "business_states_do_not_disable_feeding": true
+    },
+    "output_failure": {
+      "neutral_after": 5,
+      "controlled_exit_after": 15,
+      "neutral_window_ms": 40,
+      "handled_failures_continue_health_feeding": true
+    },
+    "stm32_layout": {
+      "boot": "0x08000000..0x08008000",
+      "record0": "0x08008000..0x0800c000",
+      "record1": "0x0800c000..0x08010000",
+      "app_a": "0x08010000",
+      "app_b": "0x08080000",
+      "max_image_bytes": 458752,
+      "fault_ram": "0x2001ffc0..0x20020000"
+    },
+    "pc_workstation": {
+      "url": "http://127.0.0.1:8765/",
+      "revision": "workstation-1",
+      "modes": [
+        "mission",
+        "bench",
+        "simulation"
+      ],
+      "control_transport": "LoRa reserved; real sending/uplink unavailable; HTTP/SPI movement rejected",
+      "record_interval_ms": 1000,
+      "record_capacity": 30000,
+      "record_storage": "bounded memory; export before shutdown",
+      "device_key_storage": "opt-in current-user Windows DPAPI; no default password; device key not rotated",
+      "openocd": "D:/OPENOCD/openocd-custom-20260922",
+      "vision": "raw camera plus detections/tracks; real result input not implemented"
+    }
+  },
+  "hardware": {
+    "connected": false,
+    "flashed": false,
+    "camera_verified": false,
+    "wifi_verified": false,
+    "spi_timing_verified": false,
+    "swd_flash_verified": false,
+    "actuators_verified": false,
+    "battery_voltage_meter_calibrated": false,
+    "voltage_feedforward_pwm_verified": false,
+    "voltage_feedforward_thrust_calibrated": false
+  },
+  "sources": [
+    {
+      "path": "common/spi_link_protocol.h",
+      "sha256": "ad442ecebbf0c326bb2e7ffd9b651a67a28a0b3b90c4912743fdb3cfd6b018d9"
+    },
+    {
+      "path": "esp32s3/AmphiLink_UI/motion_model.py",
+      "sha256": "d0b1280bb523f9f2ee60f04e04662ad91edc38d44ab7f9ce55da3540fbb47f03"
+    },
+    {
+      "path": "esp32s3/AmphiLink_flash/firmware-v2/components/APP/amphilink/tcp/src/provisioning_server.c",
+      "sha256": "344b5a3a8c2d2d9a3b35f1699c0714c5d8bcb685b3b37c7b7af94357ac304055"
+    },
+    {
+      "path": "esp32s3/AmphiLink_flash/firmware-v2/components/BSP/CMakeLists.txt",
+      "sha256": "30dced80f99c72a0a834701814a9f3f683ba66ff827b67a39cd886a5445e7ee4"
+    },
+    {
+      "path": "esp32s3/AmphiLink_flash/firmware-v2/components/Module/robot_link/robot_link.c",
+      "sha256": "e19b41c4b58ab311ef74d3d51ab898b42b82adc8a732de63289798de19f3061a"
+    },
+    {
+      "path": "esp32s3/AmphiLink_flash/firmware-v2/web/index.html",
+      "sha256": "981695cec23208fa27d42735683d8e9ef205fbb1a2a32bbcb32d78965bc1cf0a"
+    },
+    {
+      "path": "esp32s3/AmphiLink_flash/firmware-v2/web/robot.js",
+      "sha256": "f63c49dac69e5b1055c087871bf6f9d764009b904fe9e0e18efae95a9ae21fa9"
+    },
+    {
+      "path": "stm32f405/src/algorithm/BatteryVoltage.h",
+      "sha256": "e0def9077e85b6641d579163b2cf12537ecd8b504e3f77080cd95e4fbac72e13"
+    },
+    {
+      "path": "stm32f405/src/channel/ActuatorFrame.h",
+      "sha256": "4ab6bcb775c576170b2af9ce8bce47a15c773d2718a0e4a8a64d99b95062254a"
+    },
+    {
+      "path": "stm32f405/src/channel/BatterySample.h",
+      "sha256": "48d13c8fb2800e6a5dcc905221fec061dd04e8b0bbb1355790d3f3a2f2c8ab97"
+    },
+    {
+      "path": "stm32f405/src/channel/ControlFeedback.h",
+      "sha256": "575c0d9226e965aae9f3bda57a1c11dced9b84223cc85b0c4c791da0da278426"
+    },
+    {
+      "path": "stm32f405/src/channel/FrameApplyResult.h",
+      "sha256": "e37a4476b5c858840a2a95f7a7759543bb1d8e4da1c184da2552b684aa09c785"
+    },
+    {
+      "path": "stm32f405/src/channel/LoRaCommand.h",
+      "sha256": "c9c680843642f3caeb24a3db563a4cf1bbcb94ac6a950be18a1ed9bb7212ac90"
+    },
+    {
+      "path": "stm32f405/src/channel/MotionTypes.h",
+      "sha256": "e919be237df730ad969211777da717d2d7deba859e994103b7e22855369498fa"
+    },
+    {
+      "path": "stm32f405/src/config/ControlConfig.h",
+      "sha256": "83a9adbb9608dc1819842065e743081e891a67dc799710f3eb5facd34a0a2e35"
+    },
+    {
+      "path": "stm32f405/src/config/MotionAllocationConfig.h",
+      "sha256": "f1032b91fa9c7a1459ba137caee32d70f9e715c699b2eab085e09e6751e30b99"
+    },
+    {
+      "path": "stm32f405/src/control/l0/IntentAdapter.cpp",
+      "sha256": "989ab04a6dbff100d2130168afae362799e39de0573f070a48146f36ca9c4288"
+    },
+    {
+      "path": "stm32f405/src/control/l0/IntentAdapter.h",
+      "sha256": "ea282654056a300468dda9945ba9ba231d222df3294d2dbf91f0b49eb2fa839c"
+    },
+    {
+      "path": "stm32f405/src/control/l0/VisionMotionPolicy.cpp",
+      "sha256": "24bac635cb93ef626a17906d062a2789db5b05df2f1d5cd07f6456a4f0c99e4d"
+    },
+    {
+      "path": "stm32f405/src/control/l0/VisionMotionPolicy.h",
+      "sha256": "a0d54328c579ccb6f0a6e69ab8bef9f52da1e3b7effbc3857c1ac28cf752f251"
+    },
+    {
+      "path": "stm32f405/src/control/l1/Command.h",
+      "sha256": "71f88bacfd2309655d24ac50e2eb07cf97c87dadd7445de739dddd91d2c330c9"
+    },
+    {
+      "path": "stm32f405/src/control/l1/Feedback.h",
+      "sha256": "f8e1ba6ce5170a65f580889ffb4d19e355b6febba61931f9126d125ca338e716"
+    },
+    {
+      "path": "stm32f405/src/control/l2/Allocator.cpp",
+      "sha256": "209a40e78c9e3a1275b692cbfc5e6db5eac2ae71276e1d63af707abc405c2e1d"
+    },
+    {
+      "path": "stm32f405/src/control/l2/Allocator.h",
+      "sha256": "64ac27bf64d869f4b2cc4aaa77af9682d8c9d9db88ce3fa3f54bfb6591454918"
+    },
+    {
+      "path": "stm32f405/src/control/l2/Types.h",
+      "sha256": "998779e5a4b35d5f73768c0a5337d9f2b3948f93b282350c7939f571762baaba"
+    },
+    {
+      "path": "stm32f405/src/control/l2/pectoral/Pectoral.cpp",
+      "sha256": "8608dd8667bb56565ceb1df91e77c16d5a2fee107ec21425d443857212486941"
+    },
+    {
+      "path": "stm32f405/src/control/l2/pectoral/Pectoral.h",
+      "sha256": "98c389a81370f4304710c159b9820264fe6981f502d9b241b12bc4b82325b586"
+    },
+    {
+      "path": "stm32f405/src/control/l2/propulsion/Propulsion.cpp",
+      "sha256": "1596e5dac18a570b70d96d7e5c009952a5e6161c17f060d6054fc3dc69dc08ed"
+    },
+    {
+      "path": "stm32f405/src/control/l2/propulsion/Propulsion.h",
+      "sha256": "a16e49d9a12f6579d4386b6cecd9caea13a4002e7004491b99529aeed8311650"
+    },
+    {
+      "path": "stm32f405/src/control/l2/tail/Tail.cpp",
+      "sha256": "52e0312877a1e44f800e07434f7387a0d5b910029b05a8bafd4eefdc9017282e"
+    },
+    {
+      "path": "stm32f405/src/control/l2/tail/Tail.h",
+      "sha256": "c02fef6bb52ddb16d44039db4c08c12d7b02d1484fddea9afed0b7b6d1788ede"
+    },
+    {
+      "path": "stm32f405/src/device/motion/EscCalibration.h",
+      "sha256": "f9e4cdcc682b687ab8f83edd08364dda8357ea29eb6b1e715a4ccb8bcb140b3a"
+    },
+    {
+      "path": "stm32f405/src/device/motion/PectoralFins.cpp",
+      "sha256": "29d38934019d18859269db8e5977f7a30d7a6ab707db63fea9adc13a6e529e19"
+    },
+    {
+      "path": "stm32f405/src/device/motion/Propulsion.cpp",
+      "sha256": "610350b13bc000318ffcc8afb1d7bbfb04e4b708477e498798e7c5775ffdf923"
+    },
+    {
+      "path": "stm32f405/src/device/motion/RoboFishDriver.cpp",
+      "sha256": "e3dd3c86f2f1327e8cab780cd7e7eba7883fdb59ec1a12cb7124f823f8b82b69"
+    },
+    {
+      "path": "stm32f405/src/device/motion/RoboFishDriver.h",
+      "sha256": "c879ce437cf8e88d6b481cf3515bcc959b804eb0ffaf9b77bca296a48ffa8c5a"
+    },
+    {
+      "path": "stm32f405/src/device/motion/TailServos.cpp",
+      "sha256": "cd682920c09ba2d3dc34d927daa75f83509faa889aad31b6336843da68dad84c"
+    },
+    {
+      "path": "stm32f405/src/service/lora/LoRaService.cpp",
+      "sha256": "3f4b1eda456db8809fcb56c1a4b22bcafd73ed4877c7d791aa07e7d42a14f1b8"
+    },
+    {
+      "path": "stm32f405/src/service/lora/LoraProtocol.cpp",
+      "sha256": "c5bfe69efd0a9168aa1779f8e95c7c16dfc217782f0be7391f04a9aee679e809"
+    },
+    {
+      "path": "stm32f405/src/task/MotionCommandInput.cpp",
+      "sha256": "e322da70ad64060505a976161235e9820524900aff3a76923ddb1ff2f705fb00"
+    },
+    {
+      "path": "stm32f405/src/task/MotionController.cpp",
+      "sha256": "f2cdb8e3ac4af6717083c1ad58452ac21361e1a7a6548724b461c926d65b9ec9"
+    },
+    {
+      "path": "stm32f405/src/task/MotionController.h",
+      "sha256": "f37a70aee6a17e04317a6a6621af27b419f1ce39466e1deec586a5bd10849e38"
+    },
+    {
+      "path": "stm32f405/src/task/MotionControllerState.h",
+      "sha256": "7f4e352bd1689c66c520a657a5a70fe9fcb411d9aa939bce5198940f31ba10cd"
+    },
+    {
+      "path": "stm32f405/src/task/MotionFeedback.cpp",
+      "sha256": "c67523e2a0cd617acfe7504a859d5bcb571dee42e0ea5188e94f3e02e48573bd"
+    },
+    {
+      "path": "stm32f405/src/task/MotionVision.cpp",
+      "sha256": "0c0d9d4e6e2ee9157b0c2a1f5fe7e7e34e2b4bd422f26e9ea709c38bed08a158"
+    },
+    {
+      "path": "stm32f405/src/task/RemoteControlState.h",
+      "sha256": "315dbc454446d894dccdefe163013ff970dfd365450a6f4b821747d72c908f4f"
+    },
+    {
+      "path": "stm32f405/src/task/RobotTasks.cpp",
+      "sha256": "3cf71f7cd03a8e6a284d0d7cea3cddf0c828093e90586665d8c56da110141fbd"
+    },
+    {
+      "path": "stm32f405/stm32f405/CMakeLists.txt",
+      "sha256": "02787e9b1b5c1a7e11d3b327ae9aaaa7a949d42cf12f66ec1deceab67630a641"
+    },
+    {
+      "path": "stm32f405/stm32f405/Core/Src/main.cpp",
+      "sha256": "2ff7709fb9f26df465ca9abe734bf7fa76e623c81d1dd5f192bcc7970d493e36"
+    },
+    {
+      "path": "stm32f405/stm32f405/bsp/BatteryAdc.cpp",
+      "sha256": "174b4bef42ff09a2252fc863d0c779572c0fceeb8566a650e01524e0663e061e"
+    },
+    {
+      "path": "stm32f405/stm32f405/bsp/BoardInit.cpp",
+      "sha256": "85203c0370361d077f6b5be52eb4e847c9734ab928aea5cacd072f7689c79960"
+    },
+    {
+      "path": "stm32f405/stm32f405/bsp/LoRaUart.cpp",
+      "sha256": "3757c1e3857fc9fd3d2547755c20e95333fce3f2976e58907473ea506f568d36"
+    },
+    {
+      "path": "stm32f405/stm32f405/bsp/SpiLink.cpp",
+      "sha256": "cd138b7391e9f50602abb4f0f107abc169e38ce61880ce4b05961db4248355c7"
+    },
+    {
+      "path": "stm32f405/stm32f405/bsp/Time.h",
+      "sha256": "540cd809018c09b65ffec63db27b23f5bd7dd8480a9e312f842833dda39d2978"
+    },
+    {
+      "path": "tests/battery_stop_test.cpp",
+      "sha256": "fbb1dd5ea22e36969b01253ba89aad367408bfd2dec695b9d1e1c4c09d8f4193"
+    },
+    {
+      "path": "tests/host_stubs/bsp/Time.h",
+      "sha256": "cb27f4ada367ff4db414128fb35adb6665d1da52f2703c119a914a4e1b87d112"
+    },
+    {
+      "path": "tests/lora_service_test.cpp",
+      "sha256": "3053a688352a6884ccbe38996fb722e64740c86f03c98818ebb44b8786bfec19"
+    },
+    {
+      "path": "tests/robot_web_test.js",
+      "sha256": "00dc7969047b22114fc3a7160132a25634d9e0831eec1a2a79f7c315b6c21908"
+    },
+    {
+      "path": "tests/run_host_tests.py",
+      "sha256": "951bf14c333502c30fcc6d4a9c7532faab15dbc6249bbcfba0bb4edc717beebf"
+    },
+    {
+      "path": "tests/spi_state_test.cpp",
+      "sha256": "f8025d0060f142e64f393ede5a2b094aa1db75b288ae161162cd63938e5d2585"
+    },
+    {
+      "path": "tests/voltage_feedforward_test.cpp",
+      "sha256": "9890e8a3f0a8aaab847d3c3594e384b5fce04ae49fbff72c310c7cb5c37e2e4a"
+    },
+    {
+      "path": "tools/build_pc_motion_model.py",
+      "sha256": "8e522095cabd368ae15be1e88ad8251bd45be01a927490bf291f008891f04658"
+    },
+    {
+      "path": "tools/motion_model.cpp",
+      "sha256": "f011262876fa22da8aee8e5414747036ec94636ec824a204e62dbd3c8c6cb06a"
+    }
+  ],
+  "version": "3.1.5-robofish",
+  "workspace_cleanup": {
+    "removed_targets": 25,
+    "diagram_preserved": "docs/dataflow-3.1.2.html",
+    "protected": [
+      "current source",
+      "current build outputs and vendor cache",
+      "release keys",
+      "UI/runtime tools",
+      "latest signed release"
+    ],
+    "historical_record_files_removed": 4
+  },
+  "stm32_revision": "motion-control-tree-20261015",
+  "revision": "motion-control-tree-20261015",
+  "limitations": [
+    "No board flashing, real power-cut tests, PWM/ESC signal-loss or mechanical tests performed.",
+    "Actual LSI bounds, watchdog timeout switching, task WCET and stack watermarks remain unmeasured.",
+    "Phase 1 has only external LoRa control. Wi-Fi takeover, S3 upgrade locks/restricted programmer and reason UI are Phase 2.",
+    "Sender not modified; it must renew within 3000ms. Do not repeatedly replay toggle events as fresh commands.",
+    "Cross-reset LoRa fresh-session/anti-delayed-air-frame contract is not implemented.",
+    "S3 immediate OTA confirmation is unchanged; end-to-end protected wireless updates are not yet delivered.",
+    "PC real LoRa sender/uplink is not implemented; local original VISION is integrated and tested with recorded input. No hardware operations performed."
+  ],
+  "pc_workstation": {
+    "revision": "workstation-2",
+    "date": "2026-10-15",
+    "pc_tests": 70,
+    "original_vision_tests": 84,
+    "native_bridge_contracts": "attach without download; pause/inspection; exact factory plan; deny propagated without retry or fallback",
+    "browser": {
+      "passed": true,
+      "page_errors": [],
+      "native_task_mapping": [
+        "threads",
+        "stack",
+        "scopes"
+      ],
+      "checks": [
+        "independent mode without direction",
+        "three simultaneous axes",
+        "single-axis release",
+        "space stop",
+        "blur stop",
+        "native thread/frame remap",
+        "closed advanced panels",
+        "recording",
+        "4 pages at 390px"
+      ]
+    },
+    "recorded_vision": {
+      "passed": true,
+      "model_ready": true,
+      "jpeg_raw_and_result": true,
+      "multipart_stream": true,
+      "native_task_processed": true
+    },
+    "hardware_tested": false,
+    "firmware_changed": false,
+    "limitations": [
+      "PC LoRa sender and telemetry uplink not integrated.",
+      "Full source and waveform panels require the installed VS Code EmberProbe host.",
+      "No physical programming or debugging acceptance performed."
+    ]
+  },
+  "motion_control": {
+    "acceptance": ".agent_reports/motion_control_acceptance_2026-10-15.md",
+    "layers": {
+      "l0": "control/l0/IntentAdapter and VisionMotionPolicy",
+      "l1": "control/l1/Command and Feedback",
+      "l2": "control/l2/Allocator -> tail, propulsion, pectoral",
+      "l3": "device/motion/RoboFishDriver -> devices -> BSP"
+    },
+    "profile": {
+      "tail_center_degrees": 90,
+      "amplitude_degrees": 25,
+      "frequency_hz": 1.5,
+      "bionic_phase_lag_degrees": 60,
+      "hybrid_phase_lag_degrees": 72,
+      "rear_amplitude_ratio": 0.9,
+      "fin_rate_degrees_per_second": 250,
+      "propulsion_rate_percent_per_second": 500,
+      "roll_gains": 0
+    },
+    "feedback_api": [
+      "submitAttitude",
+      "submitDepth",
+      "submitVelocity",
+      "getFeedback",
+      "clearFeedback"
+    ],
+    "algorithm_api": "submitBodyCommand(mode, l1::BodyCommand, generation)",
+    "removed": [
+      "parallel mode/ source chain",
+      "sine inversion as reverse propulsion",
+      "SDK source-specific actuator profile",
+      "dormant manual goal after body takeover",
+      "unused drive reverse false-positive",
+      "independent flow-assist overwriting split demands"
+    ],
+    "verified": "finite/range/rate/phase/ordering/nominal history/authorization/stop behavior; not physical thrust or closed-loop stability",
+    "pc_preview": "stateless target preview at reference voltage; existing service retains old loaded DLL until normal restart",
+    "hardware_tested": false,
+    "tidy": {
+      "confirmed_targets_removed": 29,
+      "files_removed": 56,
+      "bytes_removed": 6941870,
+      "retired_source_files": 10,
+      "source_recovery": "build/control-implementation/retired-mode",
+      "regenerated_python_cache_directories_removed": 2
+    },
+    "pc_tests": 84,
+    "pc_loader": "rebuild stale/missing DLL before first load in a new process; never hot-replace a loaded DLL",
+    "pc_test_log": "build/control-implementation/pc-tests.log"
+  }
+}
